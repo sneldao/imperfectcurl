@@ -4,6 +4,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Curl Balance Game Styles */
+.curl-balance-game {
+  @apply relative;
+}
+
+.curl-balance-game .phase {
+  @apply transition-all duration-500 ease-in-out;
+}
+
+/* 3D Scene Container */
+.balance-scene-container {
+  @apply w-full h-full relative overflow-hidden;
+}
+
+/* Glass morphism enhancements */
+.glass-morphic-strong {
+  @apply bg-white/20 backdrop-blur-md border border-white/30;
+}
+
+/* Neon glow effects */
+.neon-glow-success {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+}
+
+.neon-glow-warning {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+}
+
+.neon-glow-error {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+}
+
 /* Font System */
 body {
   font-family: 'Inter', sans-serif;

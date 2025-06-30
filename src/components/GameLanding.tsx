@@ -2,7 +2,7 @@ import { useWallet } from '@txnlab/use-wallet-react'
 import { motion } from 'framer-motion'
 import { Dumbbell, Gamepad2, Zap, Target, Trophy, Star, Play, Camera, Sparkles, Settings, CameraOff } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
-import { CatLauncherGame } from './CatLauncherGame'
+import { CurlBalanceGame } from './CurlBalanceGame'
 import { PoseDetector } from '../utils/poseDetection'
 
 interface GameLandingProps {
@@ -156,7 +156,7 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
             Imperfect Curl
           </h1>
           <p className="text-lg sm:text-xl text-body text-gray-600 mb-8 max-w-3xl mx-auto">
-            The world's first <span className="font-bold text-purple-600">pinball-style fitness game</span> where your bicep curls launch cats at targets!
+            The world's first <span className="font-bold text-purple-600">balance-based fitness game</span> where your bicep curls help you guess mystery weights!
           </p>
           
           <motion.div
@@ -173,14 +173,16 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
         </motion.div>
 
         {/* Demo Preview */}
-        <CatLauncherGame 
-          isActive={false}
-          reps={0}
-          gameScore={0}
-          currentAngle={90}
-          formScore={85}
-          onScoreUpdate={() => {}}
-        />
+        <div className="glass-card p-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">⚖️ Curl Balance Preview</h3>
+          <div className="bg-gradient-to-b from-sky-200 to-blue-400 rounded-2xl h-64 flex items-center justify-center">
+            <div className="text-center text-white">
+              <div className="text-6xl mb-4">🐕</div>
+              <p className="text-lg font-bold">Mystery Object</p>
+              <p className="text-sm opacity-80">Connect wallet to play!</p>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -196,10 +198,10 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-              🎯 <span className="gradient-text">Cat Launcher</span>
+              ⚖️ <span className="gradient-text">Curl Balance</span>
             </h1>
             <p className="text-gray-600 text-sm sm:text-base">
-              Curl to charge power, launch cats at targets! 
+              Guess the weight, then curl to match it! 
               <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
                 {poseDetectionStatus === 'ready' ? '✓ AI Ready' : 
                  poseDetectionStatus === 'fallback' ? '⚡ Simulation' : 
@@ -224,7 +226,7 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
                 whileTap={{ scale: 0.95 }}
               >
                 <Play className="w-5 h-5 inline mr-2" />
-                Launch Game!
+                Start Challenge!
               </motion.button>
             ) : (
               <div className="flex space-x-2">
@@ -357,19 +359,18 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
           </div>
         </motion.div>
 
-        {/* Cat Launcher Game - Right Side */}
+        {/* Curl Balance Game - Right Side */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           className="space-y-4"
         >
-          <CatLauncherGame 
+          <CurlBalanceGame 
             isActive={isGameActive}
             reps={reps}
-            gameScore={gameScore}
             currentAngle={currentAngle}
             formScore={formScore}
-            onScoreUpdate={setGameScore}
+            onComplete={stopGame}
           />
         </motion.div>
       </div>
@@ -387,19 +388,19 @@ export function GameLanding({ onStartWorkout }: GameLandingProps) {
             <div className="w-12 h-12 neomorphic-button rounded-full flex items-center justify-center mx-auto mb-2">
               <span className="text-white font-bold">1</span>
             </div>
-            <p className="text-gray-600">Click "Launch Game!" to start instantly</p>
+            <p className="text-gray-600">Click "Start Challenge!" to begin</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 neomorphic-button rounded-full flex items-center justify-center mx-auto mb-2">
               <span className="text-white font-bold">2</span>
             </div>
-            <p className="text-gray-600">Curl to charge power, peak curl launches cat</p>
+            <p className="text-gray-600">Guess the weight, then curl to match it</p>
           </div>
           <div className="text-center">
             <div className="w-12 h-12 neomorphic-button rounded-full flex items-center justify-center mx-auto mb-2">
               <span className="text-white font-bold">3</span>
             </div>
-            <p className="text-gray-600">Aim for targets, avoid obstacles, have fun!</p>
+            <p className="text-gray-600">Get the closest match for highest score!</p>
           </div>
         </div>
       </motion.div>

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, CameraOff, Play, Pause, Square, Mic, MicOff, Gamepad2, AlertCircle, Maximize2, Minimize2 } from 'lucide-react'
 import { PoseDetector } from '../utils/poseDetection'
-import { IntegratedGameView } from './IntegratedGameView'
+import { CurlBalanceGame } from './CurlBalanceGame'
 import { FormFeedback } from './FormFeedback'
 import { SessionStats } from './SessionStats'
 
@@ -423,15 +423,14 @@ export function WorkoutSession({ onComplete }: WorkoutSessionProps) {
             />
           </div>
 
-          {/* Enhanced Game View */}
+          {/* Curl Balance Game */}
           {gameEnabled && (
-            <IntegratedGameView 
+            <CurlBalanceGame 
               isActive={isActive}
               reps={reps}
-              gameScore={gameScore}
               currentAngle={currentAngle}
               formScore={formScore}
-              onScoreUpdate={setGameScore}
+              onComplete={() => setGameEnabled(false)}
             />
           )}
         </motion.div>

@@ -29,7 +29,11 @@
     "@mediapipe/pose": "^0.5.1675469404",
     "@mediapipe/camera_utils": "^0.3.1675466862",
     "@mediapipe/drawing_utils": "^0.3.1620248257",
-    "framer-motion": "^11.0.0"
+    "framer-motion": "^11.0.0",
+    "@react-three/fiber": "^8.15.0",
+    "@react-three/drei": "^9.88.0",
+    "three": "^0.158.0",
+    "@react-three/cannon": "^6.6.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",
